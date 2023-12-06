@@ -49,6 +49,17 @@ export class SinglyLinkedList<T> implements LinkedList<T> {
     return string;
   }
 
+  get(index: number): T | undefined {
+    let current = this.headNode;
+    for (let i = 0; i < index; i++) {
+      if (current) {
+        current = current?.next;
+      } else throw new Error("Index out of range!");
+    }
+    if (current) return current.value;
+    else throw new Error("Index out of range!");
+  }
+
   append(item: T): void {
     if (this.headNode) {
       let current = this.headNode;
@@ -69,6 +80,7 @@ export class SinglyLinkedList<T> implements LinkedList<T> {
     let newNode = new ListNode(item);
     newNode.next = this.headNode;
     this.headNode = newNode;
+    this.listLength++;
   }
 
   insertAt(item: T, index: number): void {

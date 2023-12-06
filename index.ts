@@ -18,3 +18,6 @@ list.prepend("Math");
 list.prepend("Numbers");
 list.prepend("Are");
 console.log(list.toString() + lineSeperator);
+
+console.log("Getting Entire List");
+for (let i = 0; i < list.length; i++) console.log(list.get(i));
