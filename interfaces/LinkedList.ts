@@ -4,7 +4,7 @@ export default interface LinkedList<T> {
   remove(item: T): T | undefined;
   removeAt(index: number): T | undefined;
   append(item: T): void; // ✅
-  prepend(item: T): void;
+  prepend(item: T): void; // ✅
   get(index: number): T | undefined;
   toString(): String;
 }

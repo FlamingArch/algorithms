@@ -33,6 +33,22 @@ export class SinglyLinkedList<T> implements LinkedList<T> {
     return this.tailNode?.value;
   }
 
+  toString(): String {
+    let current = this.headNode;
+    let string = "";
+
+    string += `Length: ${this.length}\n`;
+    string += `Head: ${this.head} \n`;
+    string += `Tail: ${this.tail}\n`;
+
+    string += `List Values: ` + this.headNode?.value ?? "Empty List";
+    while (current?.next) {
+      current = current.next;
+      string += `, ${current.value}`;
+    }
+    return string;
+  }
+
   append(item: T): void {
     if (this.headNode) {
       let current = this.headNode;
@@ -49,20 +65,10 @@ export class SinglyLinkedList<T> implements LinkedList<T> {
     this.listLength += 1;
   }
 
-  toString(): String {
-    let current = this.headNode;
-    let string = "";
-
-    string += `Length: ${this.length}\n`;
-    string += `Head: ${this.head} \n`;
-    string += `Tail: ${this.tail}\n`;
-
-    string += `List Values: ` + this.headNode?.value ?? "Empty List";
-    while (current?.next) {
-      current = current.next;
-      string += `, ${current.value}`;
-    }
-    return string;
+  prepend(item: T): void {
+    let newNode = new ListNode(item);
+    newNode.next = this.headNode;
+    this.headNode = newNode;
   }
 
   insertAt(item: T, index: number): void {
