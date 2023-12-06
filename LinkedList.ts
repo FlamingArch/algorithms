@@ -54,8 +54,8 @@ export class SinglyLinkedList<T> implements LinkedList<T> {
     let string = "";
 
     string += `Length: ${this.length}\n`;
-    string += `Head: ${this.headNode} \n`;
-    string += `Tail: ${this.tailNode}\n`;
+    string += `Head: ${this.head} \n`;
+    string += `Tail: ${this.tail}\n`;
 
     string += `List Values: ` + this.headNode?.value ?? "Empty List";
     while (current?.next) {
