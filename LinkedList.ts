@@ -12,52 +12,52 @@ class ListNode<T> {
 
 export class SinglyLinkedList<T> implements LinkedList<T> {
   private listLength: number;
-  private head: ListNode<T> | undefined;
-  private tail: ListNode<T> | undefined;
+  private headNode: ListNode<T> | undefined;
+  private tailNode: ListNode<T> | undefined;
 
   constructor() {
     this.listLength = 0;
-    this.head = undefined;
-    this.tail = undefined;
+    this.headNode = undefined;
+    this.tailNode = undefined;
   }
 
   get length(): number {
     return this.listLength;
   }
 
-  get headNode(): T | undefined {
-    return this.head?.value;
+  get head(): T | undefined {
+    return this.headNode?.value;
   }
 
-  get tailNode(): T | undefined {
-    return this.tail?.value;
+  get tail(): T | undefined {
+    return this.tailNode?.value;
   }
 
   append(item: T): void {
-    if (this.head) {
-      let current = this.head;
+    if (this.headNode) {
+      let current = this.headNode;
       while (current.next) {
         current = current.next;
       }
       current.next = new ListNode(item);
-      this.tail = current.next;
+      this.tailNode = current.next;
       this.listLength += 1;
       return;
     }
-    this.head = new ListNode(item);
-    this.tail = this.head;
+    this.headNode = new ListNode(item);
+    this.tailNode = this.headNode;
     this.listLength += 1;
   }
 
   toString(): String {
-    let current = this.head;
+    let current = this.headNode;
     let string = "";
 
     string += `Length: ${this.length}\n`;
     string += `Head: ${this.headNode} \n`;
     string += `Tail: ${this.tailNode}\n`;
 
-    string += `List Values: ` + this.head?.value ?? "Empty List";
+    string += `List Values: ` + this.headNode?.value ?? "Empty List";
     while (current?.next) {
       current = current.next;
       string += `, ${current.value}`;
@@ -68,14 +68,14 @@ export class SinglyLinkedList<T> implements LinkedList<T> {
   insertAt(item: T, index: number): void {
     if (index == 0) {
       let newNode = new ListNode(item);
-      newNode.next = this.head;
-      this.head = newNode;
-      if (this.length == 0) this.tail = newNode;
+      newNode.next = this.headNode;
+      this.headNode = newNode;
+      if (this.length == 0) this.tailNode = newNode;
       this.listLength++;
       return;
     }
 
-    let current = this.head;
+    let current = this.headNode;
     for (let i = 1; i < index; i++) {
       if (current) {
         current = current?.next;
@@ -89,7 +89,7 @@ export class SinglyLinkedList<T> implements LinkedList<T> {
       newNode.next = current.next;
       current.next = newNode;
       this.listLength++;
-      if (this.length - 1 == index) this.tail = newNode;
+      if (this.length - 1 == index) this.tailNode = newNode;
     } else {
       throw new Error("Index Out Of Range!");
     }
