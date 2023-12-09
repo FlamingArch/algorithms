@@ -21,3 +21,15 @@ console.log(list.toString() + lineSeperator);
 
 console.log("Getting Entire List");
 for (let i = 0; i < list.length; i++) console.log(list.get(i));
+
+try {
+  list.remove("Maths");
+} catch (error) {
+  console.log(error);
+}
+
+list.remove("Are");
+list.remove("Math");
+list.remove(6);
+
+console.log(list.toString() + lineSeperator);

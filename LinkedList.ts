@@ -108,8 +108,32 @@ export class SinglyLinkedList<T> implements LinkedList<T> {
       current.next = newNode;
       this.listLength++;
       if (this.length - 1 == index) this.tailNode = newNode;
-    } else {
-      throw new Error("Index Out Of Range!");
+      return;
     }
+    throw new Error("Index Out Of Range!");
+  }
+
+  remove(item: T): T | undefined {
+    let current = this.headNode;
+
+    if (current?.value == item) {
+      this.headNode = current.next;
+      this.listLength -= 1;
+    }
+
+    while (current?.next?.value != item) {
+      if (!current?.next) throw new Error("Item not found in list!");
+      current = current?.next;
+      return;
+    }
+
+    let nodeToRemove: ListNode<T> = current.next;
+    if (!nodeToRemove) {
+      return;
+    }
+
+    current.next = nodeToRemove.next;
+    this.listLength -= 1;
+    return nodeToRemove.value;
   }
 }
