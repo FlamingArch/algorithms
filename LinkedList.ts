@@ -136,4 +136,21 @@ export class SinglyLinkedList<T> implements LinkedList<T> {
     this.listLength -= 1;
     return nodeToRemove.value;
   }
+
+  removeAt(index: number): T | undefined {
+    let current = this.headNode;
+    let prev: ListNode<T> | undefined = undefined;
+    for (let i = 0; i < index && current != null; i++) {
+      prev = current;
+      current = current.next;
+    }
+
+    if (!current) {
+      throw new Error("Index Out Of Range!");
+    }
+
+    if (prev != null) {
+      prev?.next = current.next;
+    }
+  }
 }
